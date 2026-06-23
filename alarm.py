@@ -1,6 +1,3 @@
-# A small interactive terminal alarm clock. Run it and a live clock fills the
-# screen; press a/t/d to add, toggle or delete alarms, q to quit.
-
 import json, os, sys, time, platform
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -43,7 +40,7 @@ def load():
         alarms = json.loads(STORE.read_text("utf-8")).get("alarms", [])
     except (FileNotFoundError, json.JSONDecodeError):
         return []
-    for a in alarms:        # ignore ids written by older versions
+    for a in alarms:
         a.pop("id", None)
     return alarms
 
@@ -81,7 +78,6 @@ def is_due(a, now):
     return True
 
 
-# 5-row block font for the big clock
 FONT = {
     "0": ("███", "█ █", "█ █", "█ █", "███"), "1": ("  █", "  █", "  █", "  █", "  █"),
     "2": ("███", "  █", "███", "█  ", "███"), "3": ("███", "  █", "███", "  █", "███"),
@@ -189,7 +185,6 @@ def delete_alarm():
         save(alarms)
 
 
-# --- terminal input: non-blocking key reads + raw/cooked switching ---
 if IS_WIN:
     import msvcrt
 
