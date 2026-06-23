@@ -1,0 +1,5 @@
+{
+  "alarms_path": "~/.alarm_clock/alarms.json",
+  "clock_color": "bright_cyan",
+  "snooze_minutes": 5
+}
